@@ -1,0 +1,62 @@
+{% extends 'buses/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center" style="margin-top: 40px;" >
+{% if error %}
+  <div><h2>{{error}}</h2></div>
+  <div class='container-fluid text-center'>
+    <div class="border-top pt-2">
+    <a class='btn btn-dark' href="{% url 'buses-home' %}">Home</a>
+    </div>
+  </div>
+{% else %}   
+
+ <div class="">
+  <form method='post' action='{% url 'book-bus'%}'>
+  {% csrf_token %}
+        <table class="table table-stripped bg-white">
+             <thead class="thead-dark">
+                <tr >
+                    <th>Bus ID</th>
+                    <th>Bus Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Seats remaining</th>
+                    <th>Price</th>
+                    <th>Departure time</th>
+                    <th>Book</th>
+                </tr>
+            </thead>
+      {% for bus in buses %}
+     <tr class="h5">
+        <td>
+          <input readonnly class="text-center" name='bus_id' value='{{bus.id}}' />
+        </td>
+        <td>{{bus.name}}</td>
+        <td>{{bus.source}}</td>
+        <td>{{bus.destination}}</td>
+        <td>{{bus.remaining_seats}}</td>
+        <td>{{bus.price}}</td>
+        <td>{{bus.departure_time}}</td>
+        <td>
+          <button type='submit' 
+          class="btn {% if bus.remaining_seats == 0  %}
+          btn-secondary
+          {% else %}
+          btn-dark btn-block
+          {% endif %} "
+          {% if bus.remaining_seats == 0  %}
+          value='Booked'
+          disabled
+          {% endif %} >{% if bus.remaining_seats == 0  %}
+          Booked {% else%} Book
+          {% endif %}</button>
+        </td>
+      </tr>
+        {% endfor %}
+        </table>
+  </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

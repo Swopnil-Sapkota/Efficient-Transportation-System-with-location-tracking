@@ -1,0 +1,109 @@
+{% extends 'buses/base.html'%}
+{% load static%}
+{% block content %}
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="content-section ">
+        <form method="POST" id="bus-search-form" class="form-inline mb-2 ml-5" action="{% url 'available-buses' %}">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4 h3 text-center volkwov"><h1>Find Bus</h1></legend>
+            <div class="form-group ">
+              <label><h4>Source:</h4></label>
+              <select name="source" id="city_autocomplete" class=" ml-3 mr-3 select_s-d" required>
+                <option>Kathmandu</option>
+                <option>Pokhara</option>
+                <option>Butwal</option>
+                <option>Birgunj</option>
+                <option>Banepa</option>
+              </select>
+              <!-- <input type="text" name="source" required id="city_autocomplete" class=" ml-3 mr-3" placeholder="Enter Source" /> -->
+            </div>
+            <div class="form-group">
+              <label><h4>Destination:</h4></label>
+              <select name="destination" id="city_autocomplete" class="ml-3 mr-3 select_s-d" required>
+                <option>Pokhara</option>
+                <option>Chitwan</option>
+                <option>Rara</option>
+                <option>Hetauda</option>
+                <option>Jhapa</option>
+              </select>
+              <!-- <input type="text" name="destination" required class="text-uppercase ml-3 mr-3"  placeholder="Enter Destination" /> -->
+            </div>
+            <div class="form-group">
+              <label><h4>Date:</h4></label>
+              <input type="date" name="date" id="dateTxt" required class="text-uppercase ml-3 mr-3" />
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-dark ml-3 mr-3" type="submit">Check Availability </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-2">
+    <div class='content-section bg-white'>
+      <div>
+        <p class="h5 volkwov ml-3"><h3>Our routes:</h3></p>
+        <ul class="list-group ">
+          <li class="list-group-item list-group-item-dark h5">Kathmandu</li>
+          <li class="list-group-item list-group-item-dark h5">Pokhara</li>
+          <li class="list-group-item list-group-item-dark h5">Chitwan</li>
+          <li class="list-group-item list-group-item-dark h5">Butwal</li>
+          {% comment %} <li class="list-group-item list-group-item-dark h5">Mustang</li>
+          <li class="list-group-item list-group-item-dark h5">Rara</li>
+          <li class="list-group-item list-group-item-dark h5">Birgunj</li>
+          <li class="list-group-item list-group-item-dark h5">Jhapa</li>
+          <li class="list-group-item list-group-item-dark h5">Banpea</li>
+          <li class="list-group-item list-group-item-dark h5">Hetauda</li> {% endcomment %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <img src="/static/img/2.jfif" alt="..." width="800" height="300">
+                                                                                                        
+  <div class="col-lg-2">
+    <div class="bg-white">
+      <p class="h5 volkwov ml-3"><h3>Our services:</h3></p>
+      <ul class="list-group ">
+        <li class="list-group-item list-group-item-dark h5">Comfort Seat</li>
+        <li class="list-group-item list-group-item-dark h5">Safe Travel</li>
+        <li class="list-group-item list-group-item-dark h5">Wi-Fi</li>
+        <li class="list-group-item list-group-item-dark h5">Security</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<center><h1 style="margin-top: 70px;">Welcome to Gututu Travels!</h1></center>
+{% comment %} <div class="container-fluid jumbotron bg-dark text-white" style='width:100%;margin-bottom:0px'>
+  <p class='text-center'> &copy Gututu Travels 2022</p>
+</div> {% endcomment %}
+
+  
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  $(Document).ready(function () {
+    $("#dateTxt").datepicker({
+      numberOfMonths: 1,
+      changeYear: true,
+      changeMonth: true,
+      showWeek: true,
+      weekHeader: "Wk No",
+      showOtherMonths: true,
+      minDate: new Date(),
+      // maxDate: new Date(2022,4,17),
+      yearRange: "2021:2023"
+    });
+  });
+</script>
+
+{% endblock %}

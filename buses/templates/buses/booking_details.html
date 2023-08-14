@@ -1,0 +1,59 @@
+{% extends 'buses/base.html'%}
+{% load static%}
+{% block content %}
+    <div class="container-fluid;" >
+        <div class="alert alert-dark text-center">
+            <h2>Dear {{user.username}}, you have successfully booked! Please download your ticket below</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-4 text-right">
+             <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark btn-lg" onclick="downloadTicket()">
+            Download your ticket
+        </button>
+        </div>
+        <!-- click to see customer booking -->
+        <div class="col-lg-6 col-sm-8 text-left" >
+            <a class="btn btn-dark btn-lg " href="{% url 'traveller-bookings' %}">See my bookings</a>
+        </div>
+
+    </div>
+    <hr>
+   <div>
+       
+            <div class="row bg-white ml-5" id="ticket">
+            
+                <div class="col-12 header">
+                    <h1 class="text-center" id="logo-text" style="display: inline;">Gututu Travels receipt:</h1>
+                    <strong><span class="p-3 mt-3 ml-5"><b>receipt no:</b>{{booking_details.id}}</span></strong>
+
+                    <hr>
+                </div>
+                <div class="info col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Name: </b>{{user.username}}</li>
+                        <li class="list-group-item"><b>Phone: </b> {{booking_details.phone_no}}</li>
+                        <li class="list-group-item"><b>From: </b>{{booking_details.source}}</li>
+                        <li class="list-group-item"><b>To: </b>{{booking_details.destination}}</li>
+                        <li class="list-group-item"><b>Date: </b>{{booking_details.date}}</li>
+                        <li class="list-group-item"><b>Departure: </b>{{booking_details.time}}</li>
+
+                    </ul>
+                </div> <b></b>
+                <div class="info col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Pickup Station: </b>{{booking_details.pick_up_station}}</li>
+                        <li class="list-group-item"><b>Bus: </b>{{booking_details.bus_name}}</li>
+                        <li class="list-group-item"><b>No of seats: </b>{{booking_details.no_of_seats}}</li>
+                        <li class="list-group-item"><b>Seats: </b>{{booking_details.seat_numbers}}</li>
+                        <li class="list-group-item"><b>Seat Price: </b>{{bus.price}}</li>
+                        <li class="list-group-item"><b>Total: </b><h3>{{booking_details.price}}</h3></li>
+                    </ul>
+                </div>
+    
+            </div>    
+ 
+ 
+{% endblock  %}
+    

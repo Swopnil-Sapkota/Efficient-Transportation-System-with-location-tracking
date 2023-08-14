@@ -1,0 +1,23 @@
+{% extends 'buses/admin_base.html'%}
+{% load static%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container text-center" style="margin-top:40px;">
+    <center><div class="content-section">
+        <form method="POST" id="visitor_form" class="col-6">
+            {% csrf_token %}
+            <fieldset class="form-group ">
+                <div class="alert bg-dark text-white text-center"><h2>New Bus</h2></div>
+                <div class="form-group">
+                    {{form|crispy}}
+                    <div class="form-group">
+                        <button class="btn btn-dark btn-block" type="submit">Add Bus</button>
+                    </div>
+            </fieldset>
+        </form>
+    </div></center>
+</div>
+
+
+
+{% endblock %}
